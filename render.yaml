@@ -1,0 +1,29 @@
+services:
+  # Backend: polls the public APIs and serves GET /api/rates.
+  - type: web
+    name: fx-tracker-api
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/rates
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
+
+  # Frontend: static React build. Static sites never sleep, so the page itself always loads.
+  - type: web
+    name: fx-tracker
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: fx-tracker-api
+          property: host
