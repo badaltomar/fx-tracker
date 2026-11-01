@@ -2,8 +2,8 @@
 
 Exchange rates for the free tier that users can trust: always something on screen, and always clear about how old it is.
 
-- Live app: `https://YOUR-FRONTEND.onrender.com`
-- API: `https://YOUR-BACKEND.onrender.com/api/rates?base=USD`
+- Live app: `https://fx-tracker-syup.onrender.com`
+- API: `https://fx-tracker-api.onrender.com/api/rates?base=USD`
 
 Read [MY_APPROACH.md](MY_APPROACH.md) for the plan I wrote before coding, and [decisions.md](decisions.md) for the decisions and trade-offs.
 
@@ -98,4 +98,4 @@ render.yaml         deployment: API as a web service, frontend as a static site
 
 ## Deploy
 
-On Render choose **New, Blueprint** and pick this repository. `render.yaml` creates the API (free web service) and the frontend (static site), and passes the API address to the frontend build.
+On Render choose **New, Blueprint** and pick this repository. `render.yaml` creates the API (free web service) and the frontend (static site). The frontend build gets the API's public address from `VITE_API_URL`; change it there if your API gets a different name.

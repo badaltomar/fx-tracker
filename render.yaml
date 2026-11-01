@@ -22,8 +22,7 @@ services:
     envVars:
       - key: NODE_VERSION
         value: "24"
+      # Public address of the API. (Render's fromService "host" is the private network name,
+      # which a browser cannot reach.)
       - key: VITE_API_URL
-        fromService:
-          type: web
-          name: fx-tracker-api
-          property: host
+        value: https://fx-tracker-api.onrender.com
